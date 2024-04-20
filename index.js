@@ -11,6 +11,7 @@ class Player {
 			x: 0,
 			y: 0
 		}
+		this.rotation = 0
 
 		const image = new Image()
 		image.src = './img/spaceship.png'
@@ -29,21 +30,101 @@ class Player {
   }
 
   draw() {
-  	//c.fillStyle = 'red'
-  	//c.fillRect(this.position.x, this.position.y, this.width, this.height) 
-  	if(this.image) // só vai desenhar se a imagem estiver carregada
-  	c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height) // que espaço será preenchido pela imagem
-}
+    // só vai desenhar se a imagem estiver carregada
+  	if (this.image) {
+  		c.save()
+  		c.translate(
+  			player.position.x + player.width / 2, 
+  			player.position.y + player.height /2
+  		) //setando ponto de rotação no centro do player
+  		c.rotate(this.rotation)
+  		c.translate(
+  			-player.position.x - player.width / 2, 
+  			-player.position.y - player.height /2
+  			)
+  		c.drawImage(
+  			this.image, 
+  			this.position.x, 
+  			this.position.y, 
+  			this.width, 
+            this.height); // que espaço será preenchido pela imagem
+  	}
+  	c.restore()
+  }
+
+  update() {
+  	if (this.image) {
+  		this.draw();
+  		this.position.x += this.velocity.x;
+  	}
+  }
 }
 
 const player = new Player()
-player.draw()
+const keys = {
+	a: {
+		pressed: false
+	},
+	d: {
+		pressed: false
+	},
+	space: {
+		pressed: false
+	},
+} //objeto que monitora todas as teclas que quero
 
 function animate() {
 	requestAnimationFrame(animate) // loop de animação pra imagem ficar carregando pq ela demora e n carrega antes do draw
 	c.fillStyle = 'black'
 	c.fillRect(0, 0, canvas.width, canvas.height)
-	player.draw()
+	player.update()
+
+	const speed = keys.a.pressed ? -7 : keys.d.pressed ? 7 : 0;
+	const rotate = keys.a.pressed ? -0.15 : keys.d.pressed ? 0.15 : 0;
+	
+	if (keys.a.pressed && player.position.x >= 0) {
+		player.velocity.x = speed
+		player.rotation = -0.15
+	} else if (keys.d.pressed && player.position.x + player.width <= canvas.width){
+		player.velocity.x = speed
+		player.rotation = 0.15
+	} 
+	else {
+		player.velocity.x = 0
+		player.rotation = 0
+	}
 }
 
 animate()
+
+addEventListener('keydown', ({key}) => {
+	switch (key){
+	case 'a': 
+		console.log('left')
+		keys.a.pressed = true
+		break
+	case 'd': 
+		console.log('right')
+		keys.d.pressed = true
+		break
+	case ' ': 
+		console.log('space')
+		break
+	}
+}) // o key code é 68, descobri com o objeto do evento
+
+addEventListener('keyup', ({key}) => {
+	switch (key){
+	case 'a': 
+		console.log('left')
+		keys.a.pressed = false
+		break
+	case 'd': 
+		console.log('right')
+		keys.d.pressed = false
+		break
+	case ' ': 
+		console.log('space')
+		break
+	}
+})
