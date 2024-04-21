@@ -64,7 +64,7 @@ class Projectile {
 	constructor({position, velocity}){ // a posição e velocidade são setados dinamicamente baseados por onde o player está
 		this.position = position
 		this.velocity = velocity
-		this.radius = 3
+		this.radius = 4
 	}
 
 	draw() {
@@ -151,14 +151,14 @@ class Grid { // pra criar linhas e colunas de invaders
         	}
         }
     }
-    update(){
+    update(){ //posição do grid atualizada com relação a sua velocidade 
     	this.position.x += this.velocity.x
     	this.position.y += this.velocity.y
     	this.velocity.y = 0
-
+// Se o grid atingir a borda direita ou esquerda do canvas
     	if(this.position.x + this.width >= canvas.width || this.position.x <= 0){
-    		this.velocity.x = -this.velocity.x
-    		this.velocity.y = 30
+    		this.velocity.x = -this.velocity.x // Inverte a direção horizontal do grid
+    		this.velocity.y = 30 // Define uma velocidade para descer uma linha (30 é um valor arbitrário)
     	}
     }
 }
@@ -197,16 +197,47 @@ function animate() {
 		}
 	});
 
-	grids.forEach(grid => {
+	grids.forEach((grid, gridIndex) => {
 		grid.update()
-		grid.invaders.forEach(invader => {
+		grid.invaders.forEach((invader, a) => {
 			invader.update({ velocity: grid.velocity })
+			projectiles.forEach((projectile, b) => {
+				grid.invaders.forEach((invader, a) => { // removendo o invasor e o projétil pós colisão
+					if (collision(projectile, invader)) {
+						grid.invaders.splice(a, 1);
+						projectiles.splice(b, 1);
+
+						if(grid.invaders.lenght > 0){
+							const firstInvader = grid.invaders[0]
+							const lastInvader = grid.invaders[grid.invaders.lenght - 1]
+
+							grid.width = 
+							lastInvader.position.x - 
+							firstInvader.position.x + lastInvader.width
+
+							grid.position.x = firstInvader.position.x 
+						}
+					} else {
+						grids.splice(gridIndex, 1)
+					}
+				});
+			});
+
+// Função para verificar colisão entre projetil e invasor
+			function collision(projectile, invader) {
+				return (
+					projectile.position.x + projectile.radius >= invader.position.x &&
+					projectile.position.x - projectile.radius <= invader.position.x + invader.width &&
+					projectile.position.y + projectile.radius >= invader.position.y &&
+					projectile.position.y - projectile.radius <= invader.position.y + invader.height
+					);
+			}
 		})
 	} )
 
 	const speed = keys.a.pressed ? -7 : keys.d.pressed ? 7 : 0;
 	const rotate = keys.a.pressed ? -0.15 : keys.d.pressed ? 0.15 : 0;
-	
+
 	if (keys.a.pressed && player.position.x >= 0) {
 		player.velocity.x = speed
 		player.rotation = -0.15
