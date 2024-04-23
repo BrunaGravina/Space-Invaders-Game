@@ -12,6 +12,7 @@ class Player {
 			y: 0
 		}
 		this.rotation = 0
+		this.opacity = 1
 
 		const image = new Image()
 		image.src = './img/spaceship.png'
@@ -33,6 +34,7 @@ class Player {
     // só vai desenhar se a imagem estiver carregada
   	if (this.image) {
   		c.save()
+  		c.globalAlpha = this.opacity
   		c.translate(
   			player.position.x + player.width / 2, 
   			player.position.y + player.height /2
@@ -213,6 +215,10 @@ const keys = {
 
 let frames = 0 
 let randomInterval = Math.floor((Math.random() * 500) + 500)
+let game = {
+	over: false,
+	active: false,
+}
 
 function animate() {
     requestAnimationFrame(animate); // loop de animação pra imagem ficar carregando pq ela demora e n carrega antes do draw
@@ -233,8 +239,13 @@ function animate() {
         	invaderProjectile.position.x + invaderProjectile.width >= player.position.x &&
         	invaderProjectile.position.x <= player.position.x + player.width ){
         	console.log('perdeuuu')
+
+        setTimeout(() =>
+        	invaderProjectiles.splice(index,1))
+        player.opacity = 0 
+        game.over = true
         }
-    });
+    },0);
     projectiles.forEach((projectile, index) => { // decidir o que fazer com cada projétil
         if (projectile.position.y + projectile.radius <= 0) { // se a parte de baixo do projétil estiver fora da tela
             setTimeout(() => {
@@ -312,6 +323,7 @@ function animate() {
 animate();
 
 addEventListener('keydown', ({key}) => {
+	if(game.over) return
     switch (key){
     case 'a': 
         //console.log('left')
@@ -338,6 +350,7 @@ addEventListener('keydown', ({key}) => {
 }); // o key code é 68, descobri com o objeto do evento
 
 addEventListener('keyup', ({key}) => {
+
     switch (key){
     case 'a': 
         console.log('left');
