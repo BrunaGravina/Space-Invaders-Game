@@ -241,7 +241,7 @@ function animate() {
         if(invaderProjectile.position.y + invaderProjectile.height >= player.position.y && 
             invaderProjectile.position.x + invaderProjectile.width >= player.position.x &&
             invaderProjectile.position.x <= player.position.x + player.width ){
-            console.log('perdeuuu')
+            //console.log('perdeuuu')
 
             setTimeout(() => {
                 invaderProjectiles.splice(index,1);
@@ -359,15 +359,15 @@ addEventListener('keydown', ({key}) => {
 addEventListener('keyup', ({key}) => {
     switch (key){
         case 'a': 
-            console.log('left');
+            //console.log('left');
             keys.a.pressed = false;
             break;
         case 'd': 
-            console.log('right');
+           // console.log('right');
             keys.d.pressed = false;
             break;
         case ' ': 
-            console.log('space');
+            //console.log('space');
             break;
     }
 })
