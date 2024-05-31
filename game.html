@@ -1,17 +1,21 @@
 <style>
-	body{
-		margin: 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: black;
-	}
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+    }
 
-	#video-container {
-	    position: relative;
-		width: 1024px;
+    canvas {
+    border: 1px solid white;
+    }
+
+    #video-container {
+        position: relative;
+        width: 1024px;
         height: 576px;
-	}
+    }
 </style>
 <div style="position: relative;">
 <p
@@ -27,13 +31,13 @@ style="
  font-size: 24px;
 "
 ><span>Score:</span> <span id="scoreEl">0</span></p>
-	<canvas></canvas>
+    <canvas></canvas>
 </div>
 <div id="video-container" style="display:none;">
-	<video id="gameover" width="640" height="360" autoplay muted >
-	  <source src="img/video.mp4" type="video/mp4">
-	
-	</video>
+    <video id="gameover" width="640" height="360" autoplay muted >
+      <source src="img/video.mp4" type="video/mp4">
+
+    </video>
   </div>
 
 <script src="game.js">
