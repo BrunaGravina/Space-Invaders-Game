@@ -26,7 +26,8 @@ Passos para executar o código:
 3 - Divirta-se jogando!
 
 
-##english version:
+
+# English version:
 
 The developed project is a game inspired by Space Invaders developed in HTML and JavaScript. The game consists of endless rounds, but if the player loses, the game will open a second page. The background of the page has a dancing kitten, and in the middle, there is a pop-up alerting the player that they have lost. The pop-up also has a button labeled "Play Again" which, when pressed, takes the player to the initial page, allowing them to play again.
 
