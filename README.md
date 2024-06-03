@@ -19,7 +19,7 @@
 
 Passos para executar o código:
 
-1 - Clone o repositório https://github.com/BrunaGravina/Credit-Card-Statement/tree/main;
+1 - Clone o repositório https://github.com/BrunaGravina/Space-Invaders-Game;
 
 2 - Abra o arquivo "game.html"
 
