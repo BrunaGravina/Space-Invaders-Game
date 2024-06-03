@@ -29,7 +29,8 @@ Passos para executar o código:
 
 # English version:
 
-The developed project is a game inspired by Space Invaders developed in HTML and JavaScript. The game consists of endless rounds, but if the player loses, the game will open a second page. The background of the page has a dancing kitten, and in the middle, there is a pop-up alerting the player that they have lost. The pop-up also has a button labeled "Play Again" which, when pressed, takes the player to the initial page, allowing them to play again.
+The developed project is a game inspired by Space Invaders developed in HTML and JavaScript. 
+The game consists of endless rounds, but if the player loses, the game will open a second page. The background of the page has a dancing kitten, and in the middle, there is a pop-up alerting the player that they have lost. The pop-up also has a button labeled "Play Again" which, when pressed, takes the player to the initial page, allowing them to play again.
 
 Language: HTML5 and JavaScript
 IDE: Visual Studio Code
@@ -37,6 +38,7 @@ How to Run the Program
 <br>
 Mandatory requirements to run the application
 Compatible browser (Opera or Google Chrome recommended)
+<br>
 Steps to run the code:
 
 1 - Clone the repository https://github.com/BrunaGravina/Space-Invaders-Game;
