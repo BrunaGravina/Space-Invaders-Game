@@ -1,7 +1,7 @@
 # SpaceInvadersGame
 - Projeto para matéria "Usabilidade, desenvolvimento web, mobile e jogos"
 - O projeto desenvolvido foi um jogo inspirado em Space Invaders desenvolvido em HTML e JavaScript. O jogo é composto por rodadas infinitas, mas caso o jogador perca, o jogo abrirá uma segunda página. O fundo da página possui um gatinho dançando e no seu meio, possui um pop-up alertando o jogador de que ele perdeu. O pop-up também possui um botão escrito “Jogar Novamente” que ao apertar, leva o jogador para a página inicial, podendo jogar novamente.
-- Integrantes:
+- Integrantes: </br>
 Bruna Gravina RA 1252221676 </br>
 Eri Veroneses Amor RA 12523138166 </br>
 Gabriel Janisky Cruz RA 1252312924 </br>
